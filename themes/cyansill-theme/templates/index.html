@@ -1,6 +1,7 @@
 <html lang="ZH-CN">
   <head>
     <title>CyanSill</title>
+    <meta charset="UTF-8" />
     <link href="/theme/css/layui.css" rel="stylesheet" />
     <style>
       .head {
@@ -13,11 +14,70 @@
         font-size: 28px;
         color: #2f363c;
       }
+
+      .articles {
+        display: flex;
+        flex-flow: wrap;
+      }
+
+      .card {
+        padding: 5px 10px;
+        margin: 5px 10px;
+      }
+
+      .title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #2f363c;
+        cursor: pointer;
+      }
+
+      .card-foot {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .tags {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 5px 0;
+        gap: 5px;
+      }
     </style>
   </head>
   <body>
     <div class="layui-panel head">
       <h1>CyanSill</h1>
     </div>
+    <div class="articles">
+      {% for i in articles %}
+      <div class="layui-panel card">
+        <div class="layui-card-header title" onclick="toArticle(this)" url="{{ i.url }}">
+          {{ i.title }}
+        </div>
+        <div class="layui-card-body card-foot">
+          <div class="layui-badge layui-bg-black">
+            {{ i.category }}
+          </div>
+          <div class="tags">
+            {% for tag in i.tags %}
+            <div class="layui-badge layui-bg-blue">
+              {{ tag }}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <script type="text/javascript">
+      function toArticle(that) {
+        // console.log(that.getAttribute("url"))
+        window.location.href = `/${that.getAttribute("url")}`
+      }
+    </script>
   </body>
 </html>
