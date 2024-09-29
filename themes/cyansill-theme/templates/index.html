@@ -1,18 +1,34 @@
 <html lang="ZH-CN">
   <head>
-    <title>CyanSill</title>
+    <title>CyanSill | Home</title>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <link href="/theme/css/layui.css" rel="stylesheet" />
     <style>
       .head {
         height: 30vh;
         background: #16baaa;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
 
         font-size: 28px;
+        font-weight: 600;
+        font-family: "Consolas";
         color: #2f363c;
+      }
+
+      .head hr {
+        width: 620px;
+      }
+
+      .head span {
+        margin: 5px 0;
+        font-size: 20px;
+        font-weight: 400;
+        font-family: "Microsoft Yahei Mono";
       }
 
       .articles {
@@ -23,6 +39,8 @@
       .card {
         padding: 5px 10px;
         margin: 5px 10px;
+
+        width: calc((100vw - 4 * 20px) / 4);
       }
 
       .title {
@@ -30,6 +48,17 @@
         font-weight: 600;
         color: #2f363c;
         cursor: pointer;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .card-body {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
       .card-foot {
@@ -42,14 +71,49 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        align-items: center;
         margin: 5px 0;
         gap: 5px;
+      }
+
+      .category {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin: 5px 0;
+      }
+
+      .published-time {
+        margin: 5px 0;
+      }
+
+      /* auto changing */
+      /* 检测到宽比高小 */
+      @media (max-width: 768px) {
+        .card {
+          width: 100vw;
+        }
+
+        .head {
+          font-size: 18px;
+        }
+
+        .head hr {
+          width: 70vw;
+        }
+
+        .head span {
+          font-size: 12px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="layui-panel head">
       <h1>CyanSill</h1>
+      <hr />
+      <span>每一个像素，都是手工微调，采用古法CSS工艺。纯天然，无添加。</span>
+      <span>小博客，大师作。</span>
     </div>
     <div class="articles">
       {% for i in articles %}
@@ -57,16 +121,31 @@
         <div class="layui-card-header title" onclick="toArticle(this)" url="{{ i.url }}">
           {{ i.title }}
         </div>
-        <div class="layui-card-body card-foot">
-          <div class="layui-badge layui-bg-black">
-            {{ i.category }}
+        <div class="layui-card-body">
+          <div class="card-body">
+            {{ i.summary }}
           </div>
-          <div class="tags">
-            {% for tag in i.tags %}
-            <div class="layui-badge layui-bg-blue">
-              {{ tag }}
+          <div class="card-foot">
+            <!-- category -->
+            <div class="category">
+              <div>分类：</div>
+              <div class="layui-badge layui-bg-black">
+                {{ i.category }}
+              </div>
             </div>
-            {% endfor %}
+            <!-- tags -->
+            <div class="tags">
+              标签：
+              {% for tag in i.tags %}
+              <div class="layui-badge layui-bg-blue">
+                {{ tag }}
+              </div>
+              {% endfor %}
+            </div>
+            <!-- published time -->
+            <div class="published-time">
+              发布时间：{{ i.date | strftime('%Y %B %d') }}
+            </div>
           </div>
         </div>
       </div>

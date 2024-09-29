@@ -1,0 +1,224 @@
+<html lang="ZH-CN">
+  <head>
+    <title>CyanSill | Article</title>
+    <meta charset="utf-8" />
+    <link href="/theme/css/layui.css" rel="stylesheet" />
+    <style type="text/css">
+
+      /* page shared style */
+      * {
+        margin: 0;
+        padding: 0;
+
+        font-family: 'Consolas', 'Microsoft YaHei';
+      }
+
+      /* animation */
+      @keyframes head-anime-fold {
+        0% {
+          height: 30vh;
+        }
+        /*
+        50% {
+          height: 22.5vh;
+        }
+        */
+        100% {
+          height: 15vh;
+        }
+      }
+
+      @keyframes head-anime-unfold {
+        0% {
+          height: 15vh;
+        }
+        /*
+        50% {
+          height: 22.5vh;
+        }
+        */
+        100% {
+          height: 30vh;
+        }
+      }
+
+      .play-head-anime-fold {
+        animation: head-anime-fold 1.2s ease-out;
+      }
+
+      .play-head-anime-unfold {
+        animation: head-anime-unfold 1.2s ease-in;
+      }
+
+      /* custom style */
+      .head {
+        position: fixed;
+        width: 100vw;
+        top: 0;
+
+        height: 30vh;
+        background: #16baaa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 28px;
+        font-weight: 600;
+        font-family: "Consolas";
+        color: #2f363c;
+
+        z-index: 999;
+
+        /* dynamic anime */
+        /* animation: head-anime-fold 1.2s ease-out; */
+        animation-fill-mode: forwards;
+      }
+
+      .head h1 {
+        cursor: pointer;
+      }
+
+      .body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+        margin-inline: auto;
+        padding: 20px;
+
+        transition: margin-top 1.2s ease-in-out;
+      }
+
+      .body h1 {
+        font-size: 36px;
+      }
+
+      .body .article-date {
+        font-size: 12px;
+        color: gray;
+      }
+
+      .body .article-content {
+        margin-top: 20px;
+        font-size: 16px;
+        width: 100%;
+      }
+
+      .body.headfold {
+        margin-top: 15vh;
+      }
+
+      .body.headunfold {
+        margin-top: 30vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="head" id="head">
+      <h1 onclick="toHome()">CyanSill</h1>
+    </div>
+    <div class="body headunfold layui-card layui-container" id="body">
+      <h1>{{ article.title }}</h1>
+      <div class="article-date">
+        发布时间：{{ article.date | strftime('%Y年%m月%d日') }}
+      </div>
+      <div class="article-content">
+        {{ article.content }}
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      /* dom properties */
+      let head
+
+      /* computed properties */
+      let pageH
+      let windowH
+      let deltaY
+
+      /* init */
+      function __init__() {
+        /* init dom properties */
+        head = document.getElementById("head")
+        body = document.getElementById("body")
+
+        /* init computed properties */
+        isUsingTouching = false
+        touchStartY = 0
+        windowH = window.innerHeight
+        pageH = body.scrollHeight - windowH
+        deltaY = 0
+
+        /* event listener */
+        addEventListener("touchstart", () => {
+          touchStartY = event.touches[0].clientY
+          isUsingTouching = true
+        })
+        window.onscroll = (event) => { 
+          if (deltaY <= 100 && !isUsingTouching) {
+            console.debug("now deltaY: " + deltaY)
+            window.scrollTo(0, 0)
+          }
+        }
+        addEventListener("wheel", (event) => {
+          if (deltaY + event.deltaY <= 0) {
+            head.classList.remove("play-head-anime-fold")
+            head.classList.add("play-head-anime-unfold")
+            body.classList.remove("headfold")
+            body.classList.add("headunfold")
+          } else if (deltaY === 0 && deltaY + event.deltaY > 0) {
+            // 阻止页面滚动
+            head.classList.remove("play-head-anime-unfold")
+            head.classList.add("play-head-anime-fold")
+            body.classList.remove("headunfold")
+            body.classList.add("headfold")
+          }
+          if (
+            deltaY + event.deltaY > 0 &&
+            deltaY + event.deltaY <= pageH
+          ) {
+            deltaY += event.deltaY
+          } else if (deltaY + event.deltaY <= 0) {
+            deltaY = 0
+          }
+          console.debug(deltaY)
+        })
+        addEventListener("touchmove", (event) => {
+          let moveY = - (event.touches[0].clientY - touchStartY)
+          console.debug("move", moveY, touchStartY)
+          if (deltaY !== 0 && deltaY + moveY <= 0) {
+            head.classList.remove("play-head-anime-fold")
+            head.classList.add("play-head-anime-unfold")
+            body.classList.remove("headfold")
+            body.classList.add("headunfold")
+          } else if (deltaY === 0 && deltaY + moveY > 0) {
+            // 阻止页面滚动
+            head.classList.remove("play-head-anime-unfold")
+            head.classList.add("play-head-anime-fold")
+            body.classList.remove("headunfold")
+            body.classList.add("headfold")
+          }
+          console.debug("now: " + deltaY + "|" + moveY)
+          if (
+            deltaY + moveY > 0 &&
+            deltaY + moveY <= pageH
+          ) {
+            deltaY += moveY
+          } else if (deltaY + moveY <= 0) {
+            deltaY = 0
+          }
+        })
+      }
+
+      /* user actions function */
+      function toHome() {
+        window.location.href = "/";
+      }
+
+      (function main() {
+        __init__()
+      })()
+    </script>
+  </body>
+</html>
