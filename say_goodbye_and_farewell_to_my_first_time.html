@@ -1,0 +1,234 @@
+<html lang="ZH-CN">
+  <head>
+    <title>CyanSill | Article</title>
+    <meta charset="utf-8" />
+    <link href="/theme/css/layui.css" rel="stylesheet" />
+    <style type="text/css">
+
+      /* page shared style */
+      * {
+        margin: 0;
+        padding: 0;
+
+        font-family: 'Consolas', 'Microsoft YaHei';
+      }
+
+      /* animation */
+      @keyframes head-anime-fold {
+        0% {
+          height: 30vh;
+        }
+        /*
+        50% {
+          height: 22.5vh;
+        }
+        */
+        100% {
+          height: 15vh;
+        }
+      }
+
+      @keyframes head-anime-unfold {
+        0% {
+          height: 15vh;
+        }
+        /*
+        50% {
+          height: 22.5vh;
+        }
+        */
+        100% {
+          height: 30vh;
+        }
+      }
+
+      .play-head-anime-fold {
+        animation: head-anime-fold 1.2s ease-out;
+      }
+
+      .play-head-anime-unfold {
+        animation: head-anime-unfold 1.2s ease-in;
+      }
+
+      /* custom style */
+      .head {
+        position: fixed;
+        width: 100vw;
+        top: 0;
+
+        height: 30vh;
+        background: #16baaa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 28px;
+        font-weight: 600;
+        font-family: "Consolas";
+        color: #2f363c;
+
+        z-index: 999;
+
+        /* dynamic anime */
+        /* animation: head-anime-fold 1.2s ease-out; */
+        animation-fill-mode: forwards;
+      }
+
+      .head h1 {
+        cursor: pointer;
+      }
+
+      .body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+        margin-inline: auto;
+        padding: 20px;
+
+        transition: margin-top 1.2s ease-in-out;
+      }
+
+      .body h1 {
+        height: 100%;
+        text-align: center;
+        font-size: 36px;
+      }
+
+      .body .article-date {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        color: gray;
+      }
+
+      .body .article-content {
+        margin-top: 20px;
+        font-size: 16px;
+        width: 100%;
+      }
+
+      .body.headfold {
+        margin-top: 15vh;
+      }
+
+      .body.headunfold {
+        margin-top: 30vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="head" id="head">
+      <h1 onclick="toHome()">CyanSill</h1>
+    </div>
+    <div class="body headunfold layui-card layui-container" id="body">
+      <h1>挥手作别，也许不带走一片尘土</h1>
+      <div class="article-date">
+        发布时间：2024年10月08日
+      </div>
+      <div class="article-content">
+        <p>&emsp;&emsp;松开相扣的手，挥舞作别，别过脸不想回头。转瞬一瞥的背影不作停留，我心头一紧，扣上卫衣的兜帽，快步地走。<br>
+&emsp;&emsp;我的决绝合乎我的情感，超乎我的意料。奔腾的情绪如海流。<br>
+&emsp;&emsp;我朝着错误的方向祈祷，月亮自然不会为我出云梢。一直以来的偏执在今天算是到了尽头。<br>
+&emsp;&emsp;我才算是明白，我所追求的依赖，不可能在这里得到回报。<br>
+&emsp;&emsp;我渴望的是情真意切的依赖、信任的紧抱，绝非是献媚地贴近，情色的嗔娇。我错误的以为若是真心期许，或许可以换来回报————所以我在每一个寂寥的深夜想着，有这样一个人，能够抚平我的孤单，回应我的祈祷。兴许有吧，但那不属于我，是他人故事里的聚焦。<br>
+&emsp;&emsp;我是应该拥抱现实，拥抱这份动物的本能，让奢靡的享受成为我灵魂的注脚；亦或是禁欲的苦行僧般为自己的过错一遍遍鞠躬弯腰，然后坚守灵魂的正道。我想现在的我会毫不犹豫地选择后者：我不愿让动物性占据我的身体，我的身体和灵魂应当属于不愿妥协的孤傲。<br>
+&emsp;&emsp;去你妈的吧，情感应该是互相信任和抚慰，而不是猜忌、利益与色欲的零和博弈。我真心诚愿有一个这样的人在不远的未来等待我，我受够了这种煎熬。</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      /* dom properties */
+      let head
+
+      /* computed properties */
+      let pageH
+      let windowH
+      let deltaY
+
+      /* init */
+      function __init__() {
+        /* init dom properties */
+        head = document.getElementById("head")
+        body = document.getElementById("body")
+
+        /* init computed properties */
+        isUsingTouching = false
+        touchStartY = 0
+        windowH = window.innerHeight
+        pageH = body.scrollHeight - windowH
+        deltaY = 0
+
+        /* event listener */
+        addEventListener("touchstart", () => {
+          touchStartY = event.touches[0].clientY
+          isUsingTouching = true
+        })
+        window.onscroll = (event) => { 
+          if (deltaY <= 100 && !isUsingTouching) {
+            console.debug("now deltaY: " + deltaY)
+            window.scrollTo(0, 0)
+          }
+        }
+        addEventListener("wheel", (event) => {
+          if (deltaY + event.deltaY <= 0) {
+            head.classList.remove("play-head-anime-fold")
+            head.classList.add("play-head-anime-unfold")
+            body.classList.remove("headfold")
+            body.classList.add("headunfold")
+          } else if (deltaY === 0 && deltaY + event.deltaY > 0) {
+            // 阻止页面滚动
+            head.classList.remove("play-head-anime-unfold")
+            head.classList.add("play-head-anime-fold")
+            body.classList.remove("headunfold")
+            body.classList.add("headfold")
+          }
+          if (
+            deltaY + event.deltaY > 0 &&
+            deltaY + event.deltaY <= pageH
+          ) {
+            deltaY += event.deltaY
+          } else if (deltaY + event.deltaY <= 0) {
+            deltaY = 0
+          }
+          console.debug(deltaY)
+        })
+        addEventListener("touchmove", (event) => {
+          let moveY = - (event.touches[0].clientY - touchStartY)
+          console.debug("move", moveY, touchStartY)
+          if (deltaY !== 0 && deltaY + moveY <= 0) {
+            head.classList.remove("play-head-anime-fold")
+            head.classList.add("play-head-anime-unfold")
+            body.classList.remove("headfold")
+            body.classList.add("headunfold")
+          } else if (deltaY === 0 && deltaY + moveY > 0) {
+            // 阻止页面滚动
+            head.classList.remove("play-head-anime-unfold")
+            head.classList.add("play-head-anime-fold")
+            body.classList.remove("headunfold")
+            body.classList.add("headfold")
+          }
+          console.debug("now: " + deltaY + "|" + moveY)
+          if (
+            deltaY + moveY > 0 &&
+            deltaY + moveY <= pageH
+          ) {
+            deltaY += moveY
+          } else if (deltaY + moveY <= 0) {
+            deltaY = 0
+          }
+        })
+      }
+
+      /* user actions function */
+      function toHome() {
+        window.location.href = "/";
+      }
+
+      (function main() {
+        __init__()
+      })()
+    </script>
+  </body>
+</html>

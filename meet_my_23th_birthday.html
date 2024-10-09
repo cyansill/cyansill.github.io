@@ -1,0 +1,254 @@
+<html lang="ZH-CN">
+  <head>
+    <title>CyanSill | Article</title>
+    <meta charset="utf-8" />
+    <link href="/theme/css/layui.css" rel="stylesheet" />
+    <style type="text/css">
+
+      /* page shared style */
+      * {
+        margin: 0;
+        padding: 0;
+
+        font-family: 'Consolas', 'Microsoft YaHei';
+      }
+
+      /* animation */
+      @keyframes head-anime-fold {
+        0% {
+          height: 30vh;
+        }
+        /*
+        50% {
+          height: 22.5vh;
+        }
+        */
+        100% {
+          height: 15vh;
+        }
+      }
+
+      @keyframes head-anime-unfold {
+        0% {
+          height: 15vh;
+        }
+        /*
+        50% {
+          height: 22.5vh;
+        }
+        */
+        100% {
+          height: 30vh;
+        }
+      }
+
+      .play-head-anime-fold {
+        animation: head-anime-fold 1.2s ease-out;
+      }
+
+      .play-head-anime-unfold {
+        animation: head-anime-unfold 1.2s ease-in;
+      }
+
+      /* custom style */
+      .head {
+        position: fixed;
+        width: 100vw;
+        top: 0;
+
+        height: 30vh;
+        background: #16baaa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 28px;
+        font-weight: 600;
+        font-family: "Consolas";
+        color: #2f363c;
+
+        z-index: 999;
+
+        /* dynamic anime */
+        /* animation: head-anime-fold 1.2s ease-out; */
+        animation-fill-mode: forwards;
+      }
+
+      .head h1 {
+        cursor: pointer;
+      }
+
+      .body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+        margin-inline: auto;
+        padding: 20px;
+
+        transition: margin-top 1.2s ease-in-out;
+      }
+
+      .body h1 {
+        height: 100%;
+        text-align: center;
+        font-size: 36px;
+      }
+
+      .body .article-date {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        color: gray;
+      }
+
+      .body .article-content {
+        margin-top: 20px;
+        font-size: 16px;
+        width: 100%;
+      }
+
+      .body.headfold {
+        margin-top: 15vh;
+      }
+
+      .body.headunfold {
+        margin-top: 30vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="head" id="head">
+      <h1 onclick="toHome()">CyanSill</h1>
+    </div>
+    <div class="body headunfold layui-card layui-container" id="body">
+      <h1>不知觉又是一载</h1>
+      <div class="article-date">
+        发布时间：2024年09月28日
+      </div>
+      <div class="article-content">
+        <h2>写在前面</h2>
+<p>&emsp;&emsp;最是难得光阴，又是一年春夏。只是今年生日尤为冷寂，凄凄冷冷凄凄，面对着的只有显示器和买给自己的生日蛋糕，无限惆怅似是而非，细想起来过往时光曼妙，却也是难回。<br>
+&emsp;&emsp;白天工作繁忙，等到下班已是约莫六七点钟，挤着地铁，回到单调的出租屋中，点亮显示器，便开始奋笔疾书，结果光是调试博客的响应式布局便花费了很长时间，最后还是没能成功，只得作罢。<br>
+&emsp;&emsp;打开音乐，听着惘闻的《水之湄》，手指在键盘上敲敲打打，思绪万千，一时如鲠在喉，万千想法喷涌，一时又不知从何说起。难免叨绪。写下来这些个文字，权当纪念。<br>
+<br /></p>
+<h2>异乡流浪</h2>
+<p>&emsp;&emsp;毕业以后，我选择暂时留在哈尔滨，暂且进行最初的资产积累。同学朋友在毕业之后都已经四散天涯，现在在哈尔滨已经没有我熟知的朋友。茶余饭后偶尔外出散步，走在哈尔滨车水马龙的高架桥上，才发现哈尔滨原来这么大，钢筋和混凝土的森林像具有魔力一般吸收着人的精神和生命。驻足在桥上，面对通往地平线的铁道，我常常会思考许多事情：异乡漂泊，独自生活，比我想象的更孤独，也更艰辛。我已不知道支撑我走下去的是什么，也许是不愿妥协，也许是想要特立独行的不甘吧，但有一件事情是早已确定的，也是我最初的思考和梦想：想要走向地平线的尽头，想要用自己的双脚丈量这个世界的每一寸土地，想要见证天南海北形色各异的风土人情。仍记得初中时写在笔记本上的一句话，“不羁放纵爱自由”，现在想来也许幼稚，但恐怕从很早以前开始，对“自由”的渴求便已经蚀刻在我的骨骼上。既然这样一条道路是自己选的，便是没有回头的选项了，哪怕是爬着也要走下去。
+&emsp;&emsp;下一站是哪里？我不知道，但不会是脚下。兴许有一天我会停下，那时候我的灵魂的终点便近在眼前了。<br>
+<br/></p>
+<h2>枯燥生活</h2>
+<p>&emsp;&emsp;自毕业以来，公司出租屋两点一线便已经是生活的常态。偶尔能有兴致，外出大街小巷走上两圈，听听市井声，看人潮来往，弥足宽慰。哈尔滨的生活气息很浓郁，没有那种不食人间烟火气的漠然。出租屋的窗户外便是两个烧烤档，每天晚上听着吵吵嚷嚷的人声，竟丝毫不觉烦厌，这种吵闹的感觉能够让我忘记自己孤身一人。哈尔滨有一种与其气候互补的热情，往往让人在冰窟中也能有些许宽慰，我想我爱煞了这座城市和生活在这座城市的质朴的人们。<br>
+&emsp;&emsp;除了外出散步的时日，更多的时候都是一个人在家中，面对着23寸的小小的显示器。这方寸之间已然成为了我的世界，仿佛已经是我的全部，将我与死亡般的孤寂隔绝开来，让我得以寻找一丝慰藉：那些虚构的故事，那些虚拟的世界，那些由0和1组成的可爱的人，俨然成为了我的孤寂的宇宙中的星辰，为我带来无尽的亮光，让我在疲倦中仍能看到一丝丝生机。那些荒诞的，离奇的故事深深吸引了我，让我一窥疯狂的边缘，像毒品一样刺激我的神经，促进多巴胺的分泌。只是到了第二天醒来，还是照常重复的工作。<br>
+<br/></p>
+<h2>无处安放的情感</h2>
+<p>&emsp;&emsp;那些曾珍重的词语现在已经可以如市场砍价一般面不改色的脱口而出，我不止一次的陷入一种无止境的对自我的问讦之中：我确乎是愈发的丑恶了。虚构的故事总是让我心潮澎湃，但每每冷静下来，便明白若是把我代入到那些虚构故事的主角的位置，故事便是难以照常进行下去了。那些秉性是我难以具备的。只是带着这样的想法，也许也能够规正自己的行为。<br>
+&emsp;&emsp;为了排解虚无的侵蚀，往往只能借助音乐的力量，让那奔涌的旋律贯穿我的胸膛；而其他作品只能是让撕裂的空洞愈发剧烈罢了。
+<br/></p>
+<h2>写在最后</h2>
+<p>叨絮叨絮，夜深人寂，便到此为止吧。“历劫知侠气，正心而后知己”，便用《活侠传》中的一段话作为结束吧，也是给自己的勉励。<br>
+“這一切，有意義。<br>
+你不言不語，那刀劍交斫的鏗鏘，便是你趙活響徹雲霄的喊聲，要令天下人豎耳傾聽。<br>
+二人均在酣鬥之中，漸入物我兩忘之境。<br>
+不約而同想起各自年少，憧憬江湖的初衷，聽著同一個故事，想要成為大俠。<br>
+不同於瑞笙得天獨厚，他是萬裡不挑一的奇才，在孤雲山長成，衣食無憂，又是單傳弟子，有恩師傾囊相授，假以時日，必有成就。<br>
+你卻生來一無所有，滿身塵土，跌跌撞撞。渾身沒有一處強勝於人，稱你凡庸都嫌委婉，本該認命服輸，碌碌無為，終你一生無所建樹。<br>
+然而掌門卻道：那是屁。<br>
+誰都有作夢的權力，難得來紅塵遊歷，何妨輕狂不醒。”</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      /* dom properties */
+      let head
+
+      /* computed properties */
+      let pageH
+      let windowH
+      let deltaY
+
+      /* init */
+      function __init__() {
+        /* init dom properties */
+        head = document.getElementById("head")
+        body = document.getElementById("body")
+
+        /* init computed properties */
+        isUsingTouching = false
+        touchStartY = 0
+        windowH = window.innerHeight
+        pageH = body.scrollHeight - windowH
+        deltaY = 0
+
+        /* event listener */
+        addEventListener("touchstart", () => {
+          touchStartY = event.touches[0].clientY
+          isUsingTouching = true
+        })
+        window.onscroll = (event) => { 
+          if (deltaY <= 100 && !isUsingTouching) {
+            console.debug("now deltaY: " + deltaY)
+            window.scrollTo(0, 0)
+          }
+        }
+        addEventListener("wheel", (event) => {
+          if (deltaY + event.deltaY <= 0) {
+            head.classList.remove("play-head-anime-fold")
+            head.classList.add("play-head-anime-unfold")
+            body.classList.remove("headfold")
+            body.classList.add("headunfold")
+          } else if (deltaY === 0 && deltaY + event.deltaY > 0) {
+            // 阻止页面滚动
+            head.classList.remove("play-head-anime-unfold")
+            head.classList.add("play-head-anime-fold")
+            body.classList.remove("headunfold")
+            body.classList.add("headfold")
+          }
+          if (
+            deltaY + event.deltaY > 0 &&
+            deltaY + event.deltaY <= pageH
+          ) {
+            deltaY += event.deltaY
+          } else if (deltaY + event.deltaY <= 0) {
+            deltaY = 0
+          }
+          console.debug(deltaY)
+        })
+        addEventListener("touchmove", (event) => {
+          let moveY = - (event.touches[0].clientY - touchStartY)
+          console.debug("move", moveY, touchStartY)
+          if (deltaY !== 0 && deltaY + moveY <= 0) {
+            head.classList.remove("play-head-anime-fold")
+            head.classList.add("play-head-anime-unfold")
+            body.classList.remove("headfold")
+            body.classList.add("headunfold")
+          } else if (deltaY === 0 && deltaY + moveY > 0) {
+            // 阻止页面滚动
+            head.classList.remove("play-head-anime-unfold")
+            head.classList.add("play-head-anime-fold")
+            body.classList.remove("headunfold")
+            body.classList.add("headfold")
+          }
+          console.debug("now: " + deltaY + "|" + moveY)
+          if (
+            deltaY + moveY > 0 &&
+            deltaY + moveY <= pageH
+          ) {
+            deltaY += moveY
+          } else if (deltaY + moveY <= 0) {
+            deltaY = 0
+          }
+        })
+      }
+
+      /* user actions function */
+      function toHome() {
+        window.location.href = "/";
+      }
+
+      (function main() {
+        __init__()
+      })()
+    </script>
+  </body>
+</html>
