@@ -2,6 +2,7 @@
   <head>
     <title>CyanSill | Article</title>
     <meta charset="utf-8" />
+    <link href="/theme/css/highlight/default.min.css" rel="stylesheet" />
     <link href="/theme/css/layui.css" rel="stylesheet" />
     <style type="text/css">
 
@@ -56,7 +57,8 @@
         width: 100vw;
         top: 0;
 
-        height: 30vh;
+        /* height: 30vh; */
+        height: 15vh;
         background: #16baaa;
         display: flex;
         justify-content: center;
@@ -87,7 +89,7 @@
         margin-inline: auto;
         padding: 20px;
 
-        transition: margin-top 1.2s ease-in-out;
+        /* transition: margin-top 1.2s ease-in-out; */
       }
 
       .body h1 {
@@ -116,13 +118,22 @@
       .body.headunfold {
         margin-top: 30vh;
       }
+
+      /*
+      .highlight {
+        background: #AAB0B6;
+        padding: 10px 8px;
+      }
+      */
     </style>
+    <script src="/theme/js/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
   </head>
   <body>
     <div class="head" id="head">
       <h1 onclick="toHome()">CyanSill</h1>
     </div>
-    <div class="body headunfold layui-card layui-container" id="body">
+    <div class="body headfold layui-card layui-container" id="body">
       <h1>{{ article.title }}</h1>
       <div class="article-date">
         发布时间：{{ article.date | strftime('%Y年%m月%d日') }}
@@ -143,76 +154,76 @@
 
       /* init */
       function __init__() {
-        /* init dom properties */
-        head = document.getElementById("head")
-        body = document.getElementById("body")
+        // /* init dom properties */
+        // head = document.getElementById("head")
+        // body = document.getElementById("body")
 
-        /* init computed properties */
-        isUsingTouching = false
-        touchStartY = 0
-        windowH = window.innerHeight
-        pageH = body.scrollHeight - windowH
-        deltaY = 0
+        // /* init computed properties */
+        // isUsingTouching = false
+        // touchStartY = 0
+        // windowH = window.innerHeight
+        // pageH = body.scrollHeight - windowH
+        // deltaY = 0
 
         /* event listener */
-        addEventListener("touchstart", () => {
-          touchStartY = event.touches[0].clientY
-          isUsingTouching = true
-        })
-        window.onscroll = (event) => { 
-          if (deltaY <= 100 && !isUsingTouching) {
-            console.debug("now deltaY: " + deltaY)
-            window.scrollTo(0, 0)
-          }
-        }
-        addEventListener("wheel", (event) => {
-          if (deltaY + event.deltaY <= 0) {
-            head.classList.remove("play-head-anime-fold")
-            head.classList.add("play-head-anime-unfold")
-            body.classList.remove("headfold")
-            body.classList.add("headunfold")
-          } else if (deltaY === 0 && deltaY + event.deltaY > 0) {
-            // 阻止页面滚动
-            head.classList.remove("play-head-anime-unfold")
-            head.classList.add("play-head-anime-fold")
-            body.classList.remove("headunfold")
-            body.classList.add("headfold")
-          }
-          if (
-            deltaY + event.deltaY > 0 &&
-            deltaY + event.deltaY <= pageH
-          ) {
-            deltaY += event.deltaY
-          } else if (deltaY + event.deltaY <= 0) {
-            deltaY = 0
-          }
-          console.debug(deltaY)
-        })
-        addEventListener("touchmove", (event) => {
-          let moveY = - (event.touches[0].clientY - touchStartY)
-          console.debug("move", moveY, touchStartY)
-          if (deltaY !== 0 && deltaY + moveY <= 0) {
-            head.classList.remove("play-head-anime-fold")
-            head.classList.add("play-head-anime-unfold")
-            body.classList.remove("headfold")
-            body.classList.add("headunfold")
-          } else if (deltaY === 0 && deltaY + moveY > 0) {
-            // 阻止页面滚动
-            head.classList.remove("play-head-anime-unfold")
-            head.classList.add("play-head-anime-fold")
-            body.classList.remove("headunfold")
-            body.classList.add("headfold")
-          }
-          console.debug("now: " + deltaY + "|" + moveY)
-          if (
-            deltaY + moveY > 0 &&
-            deltaY + moveY <= pageH
-          ) {
-            deltaY += moveY
-          } else if (deltaY + moveY <= 0) {
-            deltaY = 0
-          }
-        })
+        // addEventListener("touchstart", () => {
+        //   touchStartY = event.touches[0].clientY
+        //   isUsingTouching = true
+        // })
+        // window.onscroll = (event) => { 
+        //   if (deltaY <= 100 && !isUsingTouching) {
+        //     console.debug("now deltaY: " + deltaY)
+        //     window.scrollTo(0, 0)
+        //   }
+        // }
+        // addEventListener("wheel", (event) => {
+        //   if (deltaY + event.deltaY <= 0) {
+        //     head.classList.remove("play-head-anime-fold")
+        //     head.classList.add("play-head-anime-unfold")
+        //     body.classList.remove("headfold")
+        //     body.classList.add("headunfold")
+        //   } else if (deltaY === 0 && deltaY + event.deltaY > 0) {
+        //     // 阻止页面滚动
+        //     head.classList.remove("play-head-anime-unfold")
+        //     head.classList.add("play-head-anime-fold")
+        //     body.classList.remove("headunfold")
+        //     body.classList.add("headfold")
+        //   }
+        //   if (
+        //     deltaY + event.deltaY > 0 &&
+        //     deltaY + event.deltaY <= pageH
+        //   ) {
+        //     deltaY += event.deltaY
+        //   } else if (deltaY + event.deltaY <= 0) {
+        //     deltaY = 0
+        //   }
+        //   console.debug(deltaY)
+        // })
+        // addEventListener("touchmove", (event) => {
+        //   let moveY = - (event.touches[0].clientY - touchStartY)
+        //   console.debug("move", moveY, touchStartY)
+        //   if (deltaY !== 0 && deltaY + moveY <= 0) {
+        //     head.classList.remove("play-head-anime-fold")
+        //     head.classList.add("play-head-anime-unfold")
+        //     body.classList.remove("headfold")
+        //     body.classList.add("headunfold")
+        //   } else if (deltaY === 0 && deltaY + moveY > 0) {
+        //     // 阻止页面滚动
+        //     head.classList.remove("play-head-anime-unfold")
+        //     head.classList.add("play-head-anime-fold")
+        //     body.classList.remove("headunfold")
+        //     body.classList.add("headfold")
+        //   }
+        //   console.debug("now: " + deltaY + "|" + moveY)
+        //   if (
+        //     deltaY + moveY > 0 &&
+        //     deltaY + moveY <= pageH
+        //   ) {
+        //     deltaY += moveY
+        //   } else if (deltaY + moveY <= 0) {
+        //     deltaY = 0
+        //   }
+        // })
       }
 
       /* user actions function */
