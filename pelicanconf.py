@@ -31,3 +31,5 @@ DEFAULT_PAGINATION = 15
 #RELATIVE_URLS = True
 
 THEME = 'themes/cyansill-theme' 
+
+TEMPLATE_PAGES = {'about.html': 'info/about.html'}
