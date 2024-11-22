@@ -3,7 +3,7 @@
     <title>CyanSill | Home</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    <meta name="page-type" content="index">
     <link href="/theme/css/layui.css" rel="stylesheet" />
     <style>
       .head {
@@ -110,14 +110,7 @@
     </style>
   </head>
   <body>
-    <ul class="layui-nav">
-      <li class="layui-nav-item layui-this">
-        <a href="/">主页</a>
-      </li>
-      <li class="layui-nav-item">
-        <a href="/info/about">关于</a>
-      </li>
-    </ul>
+    <div id="header-nav"></div>
     <div class="layui-panel head">
       <h1>CyanSill</h1>
       <hr />
@@ -161,6 +154,8 @@
       {% endfor %}
     </div>
 
+    <script src="/theme/js/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/theme/js/components/header-nav.js"></script>
     <script type="text/javascript">
       function toArticle(that) {
         // console.log(that.getAttribute("url"))

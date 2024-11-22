@@ -2,6 +2,7 @@
   <head>
     <title>CyanSill | Article</title>
     <meta charset="utf-8" />
+    <meta name="page-type" content="article" />
     <link href="/theme/css/highlight/default.min.css" rel="stylesheet" />
     <link href="/theme/css/layui.css" rel="stylesheet" />
     <style type="text/css">
@@ -14,50 +15,8 @@
         font-family: 'Consolas', 'Microsoft YaHei';
       }
 
-      /* animation */
-      @keyframes head-anime-fold {
-        0% {
-          height: 30vh;
-        }
-        /*
-        50% {
-          height: 22.5vh;
-        }
-        */
-        100% {
-          height: 15vh;
-        }
-      }
-
-      @keyframes head-anime-unfold {
-        0% {
-          height: 15vh;
-        }
-        /*
-        50% {
-          height: 22.5vh;
-        }
-        */
-        100% {
-          height: 30vh;
-        }
-      }
-
-      .play-head-anime-fold {
-        animation: head-anime-fold 1.2s ease-out;
-      }
-
-      .play-head-anime-unfold {
-        animation: head-anime-unfold 1.2s ease-in;
-      }
-
       /* custom style */
       .head {
-        position: fixed;
-        width: 100vw;
-        top: 0;
-
-        /* height: 30vh; */
         height: 30vh;
         background: #16baaa;
         display: flex;
@@ -70,10 +29,6 @@
         color: #2f363c;
 
         z-index: 999;
-
-        /* dynamic anime */
-        /* animation: head-anime-fold 1.2s ease-out; */
-        animation-fill-mode: forwards;
       }
 
       .head h1 {
@@ -88,8 +43,6 @@
         width: 100%;
         margin-inline: auto;
         padding: 20px;
-
-        /* transition: margin-top 1.2s ease-in-out; */
       }
 
       .body h1 {
@@ -110,30 +63,16 @@
         font-size: 16px;
         width: 100%;
       }
-
-      .body.headfold {
-        margin-top: 15vh;
-      }
-
-      .body.headunfold {
-        margin-top: 30vh;
-      }
-
-      /*
-      .highlight {
-        background: #AAB0B6;
-        padding: 10px 8px;
-      }
-      */
     </style>
     <script src="/theme/js/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
   </head>
   <body>
+    <div id="header-nav"></div>
     <div class="head" id="head">
       <h1 onclick="toHome()">CyanSill</h1>
     </div>
-    <div class="body headfold layui-card layui-container" id="body">
+    <div class="body layui-card layui-container" id="body">
       <h1>{{ article.title }}</h1>
       <div class="article-date">
         发布时间：{{ article.date | strftime('%Y年%m月%d日') }}
@@ -143,97 +82,7 @@
       </div>
     </div>
 
-    <script type="text/javascript">
-      /* dom properties */
-      let head
-
-      /* computed properties */
-      let pageH
-      let windowH
-      let deltaY
-
-      /* init */
-      function __init__() {
-        // /* init dom properties */
-        // head = document.getElementById("head")
-        // body = document.getElementById("body")
-
-        // /* init computed properties */
-        // isUsingTouching = false
-        // touchStartY = 0
-        // windowH = window.innerHeight
-        // pageH = body.scrollHeight - windowH
-        // deltaY = 0
-
-        /* event listener */
-        // addEventListener("touchstart", () => {
-        //   touchStartY = event.touches[0].clientY
-        //   isUsingTouching = true
-        // })
-        // window.onscroll = (event) => { 
-        //   if (deltaY <= 100 && !isUsingTouching) {
-        //     console.debug("now deltaY: " + deltaY)
-        //     window.scrollTo(0, 0)
-        //   }
-        // }
-        // addEventListener("wheel", (event) => {
-        //   if (deltaY + event.deltaY <= 0) {
-        //     head.classList.remove("play-head-anime-fold")
-        //     head.classList.add("play-head-anime-unfold")
-        //     body.classList.remove("headfold")
-        //     body.classList.add("headunfold")
-        //   } else if (deltaY === 0 && deltaY + event.deltaY > 0) {
-        //     // 阻止页面滚动
-        //     head.classList.remove("play-head-anime-unfold")
-        //     head.classList.add("play-head-anime-fold")
-        //     body.classList.remove("headunfold")
-        //     body.classList.add("headfold")
-        //   }
-        //   if (
-        //     deltaY + event.deltaY > 0 &&
-        //     deltaY + event.deltaY <= pageH
-        //   ) {
-        //     deltaY += event.deltaY
-        //   } else if (deltaY + event.deltaY <= 0) {
-        //     deltaY = 0
-        //   }
-        //   console.debug(deltaY)
-        // })
-        // addEventListener("touchmove", (event) => {
-        //   let moveY = - (event.touches[0].clientY - touchStartY)
-        //   console.debug("move", moveY, touchStartY)
-        //   if (deltaY !== 0 && deltaY + moveY <= 0) {
-        //     head.classList.remove("play-head-anime-fold")
-        //     head.classList.add("play-head-anime-unfold")
-        //     body.classList.remove("headfold")
-        //     body.classList.add("headunfold")
-        //   } else if (deltaY === 0 && deltaY + moveY > 0) {
-        //     // 阻止页面滚动
-        //     head.classList.remove("play-head-anime-unfold")
-        //     head.classList.add("play-head-anime-fold")
-        //     body.classList.remove("headunfold")
-        //     body.classList.add("headfold")
-        //   }
-        //   console.debug("now: " + deltaY + "|" + moveY)
-        //   if (
-        //     deltaY + moveY > 0 &&
-        //     deltaY + moveY <= pageH
-        //   ) {
-        //     deltaY += moveY
-        //   } else if (deltaY + moveY <= 0) {
-        //     deltaY = 0
-        //   }
-        // })
-      }
-
-      /* user actions function */
-      function toHome() {
-        window.location.href = "/";
-      }
-
-      (function main() {
-        __init__()
-      })()
-    </script>
+    <script src="/theme/js/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/theme/js/components/header-nav.js"></script>    
   </body>
 </html>
