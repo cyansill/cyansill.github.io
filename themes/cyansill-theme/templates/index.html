@@ -31,17 +31,63 @@
         font-family: "Microsoft Yahei Mono";
       }
 
+      .main-content {
+        width: 100vw;
+        display: flex;
+      }
+
+      .posts-flow {
+        flex: 1 0 70%;
+      }
+
+      .side-card {
+        margin: 5px 0 5px 0;
+        flex: 0 0 30%;
+        box-sizing: border-box;
+        padding-right: 10px;
+
+        height: 500px;
+      }
+
+      .side-card .base-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .side-card .avatar {
+        width: 87px;
+        height: 87px;        
+        overflow: hidden;
+        border-radius: 50%;
+      }
+
+      .side-card .avatar img {
+        width: 100%;
+        width: 100%;
+      }
+
+      .side-card .username {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #000000;
+      }
+
+      .side-card .email {
+        font-size: .8rem;
+        color: lightgray;
+      }
+
       .articles {
         display: flex;
         flex-flow: wrap;
+        box-sizing: border-box;
       }
 
       .card {
-        padding: 5px 10px;
         margin: 5px 10px;
-
-        flex: 1 0 20%;
-        /* width: calc((100vw - 4 * 20px) / 4); */
+        flex: 1 0 auto;
+        box-sizing: border-box; 
       }
 
       .title {
@@ -92,7 +138,7 @@
       /* 检测到宽比高小 */
       @media (max-width: 768px) {
         .card {
-          width: 100vw;
+          flex: 1 0 calc(100% - 30px);
         }
 
         .head {
@@ -106,6 +152,20 @@
         .head span {
           font-size: 12px;
         }
+
+        .main-content {
+          flex-wrap: wrap;
+        }
+
+        .posts-flow {
+          flex: 1 0 100%;
+        }
+
+        .side-card {
+          flex: 1 0 100%;
+          padding-left: 10px;
+          height: auto;
+        }
       }
     </style>
   </head>
@@ -117,42 +177,61 @@
       <span>每一个像素，都是手工微调，采用古法CSS工艺。纯天然，无添加。</span>
       <span>小博客，大师作。</span>
     </div>
-    <div class="articles">
-      {% for i in articles %}
-      <div class="layui-panel card">
-        <div class="layui-card-header title" onclick="toArticle(this)" url="{{ i.url }}">
-          {{ i.title }}
-        </div>
-        <div class="layui-card-body">
-          <div class="card-body">
-            {{ i.summary }}
+    <div class="main-content">
+      <div class="posts-flow">
+        <div class="articles">
+          {% for i in articles %}
+          <div class="layui-panel card">
+            <div class="layui-card-header title" onclick="toArticle(this)" url="{{ i.url }}">
+              {{ i.title }}
+            </div>
+            <div class="layui-card-body">
+              <div class="card-body">
+                {{ i.summary }}
+              </div>
+              <div class="card-foot">
+                <!-- category -->
+                <div class="category">
+                  <div>分类：</div>
+                  <div class="layui-badge layui-bg-black">
+                    {{ i.category }}
+                  </div>
+                </div>
+                <!-- tags -->
+                <div class="tags">
+                  标签：
+                  {% for tag in i.tags %}
+                  <div class="layui-badge layui-bg-blue">
+                    {{ tag }}
+                  </div>
+                  {% endfor %}
+                </div>
+                <!-- published time -->
+                <div class="published-time">
+                  发布时间：{{ i.date | strftime('%Y %B %d') }}
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="card-foot">
-            <!-- category -->
-            <div class="category">
-              <div>分类：</div>
-              <div class="layui-badge layui-bg-black">
-                {{ i.category }}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="side-card">
+        <div class="layui-panel">
+          <div class="layui-card-header">我的名片</div>
+          <div class="layui-card-body">
+            <div class="base-info">
+              <div class="avatar">
+                <img src="/theme/img/233.jpg" />
               </div>
-            </div>
-            <!-- tags -->
-            <div class="tags">
-              标签：
-              {% for tag in i.tags %}
-              <div class="layui-badge layui-bg-blue">
-                {{ tag }}
-              </div>
-              {% endfor %}
-            </div>
-            <!-- published time -->
-            <div class="published-time">
-              发布时间：{{ i.date | strftime('%Y %B %d') }}
+              <div class="username">SILL</div>
+              <div class="email">sill_dimitrios@icloud.com</div>
             </div>
           </div>
         </div>
       </div>
-      {% endfor %}
     </div>
+    
 
     <script src="/theme/js/jquery/jquery-3.7.1.min.js"></script>
     <script src="/theme/js/components/header-nav.js"></script>
