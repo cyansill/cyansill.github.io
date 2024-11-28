@@ -20,7 +20,7 @@
       break
   }
   var header_html = `
-<ul class="layui-nav dynamic-nav">
+<ul class=" layui-header layui-nav dynamic-nav">
   <li class="layui-nav-item dynamic-nav-item ${ layui_this === 0 ? 'layui-this' : '' }">
     <a href="/">主页</a>
   </li>
@@ -37,6 +37,12 @@
   `
 
   $('#header-nav') ? $('#header-nav').html(header_html) : null
+  $('.dynamic-nav').css('position', 'fixed')
+  $('.dynamic-nav').css('top', '0')
+  $('.dynamic-nav').css('left', '0')
+  $('.dynamic-nav').css('right', '0')
+  $('.dynamic-nav').css('border-radius', '0')
+  $('.dynamic-nav').css('z-index', '999')
   function dynamicStyle() {
     if ($(window).width() < 768) {
       $('.dynamic-nav').css('display', 'flex')

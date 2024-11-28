@@ -4,170 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="page-type" content="index">
-    <link href="/theme/css/layui.css" rel="stylesheet" />
-    <style>
-      .head {
-        height: 30vh;
-        background: #16baaa;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 28px;
-        font-weight: 600;
-        font-family: "Consolas";
-        color: #2f363c;
-      }
-
-      .head hr {
-        width: 620px;
-      }
-
-      .head span {
-        margin: 5px 0;
-        font-size: 20px;
-        font-weight: 400;
-        font-family: "Microsoft Yahei Mono";
-      }
-
-      .main-content {
-        width: 100vw;
-        display: flex;
-      }
-
-      .posts-flow {
-        flex: 1 0 70%;
-      }
-
-      .side-card {
-        margin: 5px 0 5px 0;
-        flex: 0 0 30%;
-        box-sizing: border-box;
-        padding-right: 10px;
-
-        height: 500px;
-      }
-
-      .side-card .base-info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .side-card .avatar {
-        width: 87px;
-        height: 87px;        
-        overflow: hidden;
-        border-radius: 50%;
-      }
-
-      .side-card .avatar img {
-        width: 100%;
-        width: 100%;
-      }
-
-      .side-card .username {
-        font-size: 1rem;
-        font-weight: 700;
-        color: #000000;
-      }
-
-      .side-card .email {
-        font-size: .8rem;
-        color: lightgray;
-      }
-
-      .articles {
-        display: flex;
-        flex-flow: wrap;
-        box-sizing: border-box;
-      }
-
-      .card {
-        margin: 5px 10px;
-        flex: 1 0 auto;
-        box-sizing: border-box; 
-      }
-
-      .title {
-        font-size: 18px;
-        font-weight: 600;
-        color: #2f363c;
-        cursor: pointer;
-
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-
-      .card-body {
-        width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-
-      .card-foot {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .tags {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        margin: 5px 0;
-        gap: 5px;
-      }
-
-      .category {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        margin: 5px 0;
-      }
-
-      .published-time {
-        margin: 5px 0;
-      }
-
-      /* auto changing */
-      /* 检测到宽比高小 */
-      @media (max-width: 768px) {
-        .card {
-          flex: 1 0 calc(100% - 30px);
-        }
-
-        .head {
-          font-size: 18px;
-        }
-
-        .head hr {
-          width: 70vw;
-        }
-
-        .head span {
-          font-size: 12px;
-        }
-
-        .main-content {
-          flex-wrap: wrap;
-        }
-
-        .posts-flow {
-          flex: 1 0 100%;
-        }
-
-        .side-card {
-          flex: 1 0 100%;
-          padding-left: 10px;
-          height: auto;
-        }
-      }
-    </style>
+    <link href="/theme/css/layui/layui.css" rel="stylesheet" />
+    <link href="/theme/css/templates/index.css" rel="stylesheet" />
   </head>
   <body>
     <div id="header-nav"></div>
@@ -182,7 +20,7 @@
         <div class="articles">
           {% for i in articles %}
           <div class="layui-panel card">
-            <div class="layui-card-header title" onclick="toArticle(this)" url="{{ i.url }}">
+            <div class="layui-card-header title" onclick="toLocal(this)" url="{{ i.url }}">
               {{ i.title }}
             </div>
             <div class="layui-card-body">
@@ -226,6 +64,17 @@
               </div>
               <div class="username">SILL</div>
               <div class="email">sill_dimitrios@icloud.com</div>
+              <div class="social-icons">
+                <div class="social-icon">
+                  <img src="/theme/img/social-icons/github.png" alt="github" url="https://github.com/cyansill" onclick="toOutter(this)" />
+                </div>
+                <div class="social-icon">
+                  <img src="/theme/img/social-icons/wechat.png" alt="wechat" url="info/about" onclick="toLocal(this)" />
+                </div>
+                <div class="social-icon">
+                  <img src="/theme/img/social-icons/pgc_bangumi.png" alt="pac_bangumi" url="https://bgm.tv/user/silldimitrios" onclick="toOutter(this)" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -236,9 +85,12 @@
     <script src="/theme/js/jquery/jquery-3.7.1.min.js"></script>
     <script src="/theme/js/components/header-nav.js"></script>
     <script type="text/javascript">
-      function toArticle(that) {
+      function toLocal(that) {
         // console.log(that.getAttribute("url"))
         window.location.href = `/${that.getAttribute("url")}`
+      }
+      function toOutter(that) {
+        window.open(that.getAttribute("url"))
       }
     </script>
   </body>

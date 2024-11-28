@@ -5,64 +5,8 @@
     <meta name="page-type" content="article" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/theme/css/highlight/default.min.css" rel="stylesheet" />
-    <link href="/theme/css/layui.css" rel="stylesheet" />
-    <style type="text/css">
-
-      * {
-        margin: 0;
-        padding: 0;
-
-        font-family: 'Consolas', 'Microsoft YaHei';
-      }
-
-      .head {
-        height: 30vh;
-        background: #16baaa;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        font-size: 28px;
-        font-weight: 600;
-        font-family: "Consolas";
-        color: #2f363c;
-
-        z-index: 999;
-      }
-
-      .head h1 {
-        cursor: pointer;
-      }
-
-      .body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        width: 100%;
-        margin-inline: auto;
-        padding: 20px;
-      }
-
-      .body h1 {
-        height: 100%;
-        text-align: center;
-        font-size: 36px;
-      }
-
-      .body .article-date {
-        width: 100%;
-        text-align: center;
-        font-size: 12px;
-        color: gray;
-      }
-
-      .body .article-content {
-        margin-top: 20px;
-        font-size: 16px;
-        width: 100%;
-      }
-    </style>
+    <link href="/theme/css/layui/layui.css" rel="stylesheet" />
+    <link href="/theme/css/templates/article.css" rel="stylesheet" />
     <script src="/theme/js/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
   </head>
@@ -83,5 +27,10 @@
 
     <script src="/theme/js/jquery/jquery-3.7.1.min.js"></script>
     <script src="/theme/js/components/header-nav.js"></script>    
+    <script>
+      function toHome() {
+        window.location.href = '/';
+      }
+    </script>
   </body>
 </html>
