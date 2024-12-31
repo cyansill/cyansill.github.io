@@ -1,0 +1,99 @@
+<html lang="ZH-CN">
+  <head>
+    <title>CyanSill | Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="page-type" content="index">
+    <link href="/theme/css/layui/layui.css" rel="stylesheet" />
+    <link href="/theme/css/templates/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="header-nav"></div>
+    <div class="layui-panel head">
+      <h1>CyanSill</h1>
+      <hr />
+      <span>每一个像素，都是手工微调，采用古法CSS工艺。纯天然，无添加。</span>
+      <span>小博客，大师作。</span>
+    </div>
+    <div class="main-content">
+      <div class="posts-flow">
+        <div class="articles">
+          <div class="layui-panel card">
+            <div class="layui-card-header title" onclick="toLocal(this)" url="happy_new_year_2025.html">
+              迎 2025
+            </div>
+            <div class="layui-card-body">
+              <div class="card-body">
+                <p>随意写点，迎接2025新年</p>
+              </div>
+              <div class="card-foot">
+                <!-- category -->
+                <div class="category">
+                  <div>分类：</div>
+                  <div class="layui-badge layui-bg-black">
+                    Life
+                  </div>
+                </div>
+                <!-- tags -->
+                <div class="tags">
+                  标签：
+                  <div class="layui-badge layui-bg-blue">
+                    write
+                  </div>
+                  <div class="layui-badge layui-bg-blue">
+                    new_year
+                  </div>
+                  <div class="layui-badge layui-bg-blue">
+                    life
+                  </div>
+                </div>
+                <!-- published time -->
+                <div class="published-time">
+                  发布时间：2024 December 31
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="side-card">
+        <div class="layui-panel">
+          <div class="layui-card-header">我的名片</div>
+          <div class="layui-card-body">
+            <div class="base-info">
+              <div class="avatar">
+                <img src="/theme/img/233.jpg" />
+              </div>
+              <div class="username">SILL</div>
+              <div class="email">sill_dimitrios@icloud.com</div>
+              <div class="social-icons">
+                <div class="social-icon">
+                  <img src="/theme/img/social-icons/github.png" alt="github" url="https://github.com/cyansill" onclick="toOutter(this)" />
+                </div>
+                <div class="social-icon">
+                  <img src="/theme/img/social-icons/wechat.png" alt="wechat" url="info/about" onclick="toLocal(this)" />
+                </div>
+                <div class="social-icon">
+                  <img src="/theme/img/social-icons/pgc_bangumi.png" alt="pac_bangumi" url="https://bgm.tv/user/silldimitrios" onclick="toOutter(this)" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <script src="/theme/js/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/theme/js/components/header-nav.js"></script>
+    <script type="text/javascript">
+      function toLocal(that) {
+        // console.log(that.getAttribute("url"))
+        window.location.href = `/${that.getAttribute("url")}`
+      }
+      function toOutter(that) {
+        window.open(that.getAttribute("url"))
+      }
+    </script>
+  </body>
+</html>

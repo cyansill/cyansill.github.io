@@ -1,0 +1,58 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Consolas', 'Microsoft YaHei';
+}
+
+.head {
+  height: 30vh;
+  background: #16baaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 28px;
+  font-weight: 600;
+  font-family: "Consolas";
+  color: #2f363c;
+
+  z-index: 999;
+  margin-top: 60px;
+}
+
+.head h1 {
+  cursor: pointer;
+  font-size: 36px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  margin-inline: auto;
+  padding: 20px;
+}
+
+.body h1 {
+  height: 100%;
+  text-align: center;
+  font-size: 36px;
+}
+
+.body .article-date {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: gray;
+}
+
+.body .article-content {
+  margin-top: 20px;
+  font-size: 16px;
+  width: 100%;
+}
